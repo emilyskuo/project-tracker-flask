@@ -48,18 +48,35 @@ def get_student():
 
     #http://127.0.0.1:5000/student?github=jhacks
 
+
 @app.route("/project")
+def show_project_form():
+    """Display form to request project information"""
+
+    return render_template("project_form.html")
+
+
+@app.route("/project", methods=["POST"])
 def get_project():
     """Show information about a student."""
 
-    title = request.args.get('title')
+    title = request.form.get('title')
 
     title, description, max_grade = hackbright.get_project_by_title(title)
+    list_of_grades = hackbright.get_grades_by_title(title)
+    print(list_of_grades)
+
+    list_fname_lname = []
+
+    for grade in list_of_grades:
+      first_name, last_name, student_github = hackbright.get_student_by_github(grade[0])
+      list_fname_lname.append((first_name, last_name, student_github))
 
     html = render_template("project_info.html",
                            title=title,
                            description=description,
-                           max_grade=max_grade)
+                           max_grade=max_grade,
+                           list_fname_lname =list_fname_lname)
     return html
     #http://127.0.0.1:5000/project?title=Markov
 

@@ -5,6 +5,10 @@
 </head>
 <body>
   <h1>{{ title }} {{ description }} {{ max_grade }}</h1>
-
+    <ul>
+        {% for fname, lname, student_github in list_fname_lname %}
+        <li> {{fname}} {{lname}} <a href=http://127.0.0.1:5000/student?github={{student_github}}>Link to student profile</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

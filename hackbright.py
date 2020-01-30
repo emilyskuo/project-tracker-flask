@@ -33,7 +33,7 @@ def get_student_by_github(github):
 
     row = db_cursor.fetchone()
 
-    print(f"Student: {row[0]} {row[1]}\nGitHub account: {row[2]}")
+    #print(f"Student: {row[0]} {row[1]}\nGitHub account: {row[2]}")
 
     return row
 
@@ -144,8 +144,8 @@ def get_grades_by_title(title):
 
     rows = db_cursor.fetchall()
 
-    for row in rows:
-        print(f"Student {row[0]} received grade of {row[1]} for {title}")
+    #for row in rows:
+        #print(f"Student {row[0]} received grade of {row[1]} for {title}")
 
     return rows
 
